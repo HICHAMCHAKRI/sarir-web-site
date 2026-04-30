@@ -3,572 +3,702 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phone Skin – Pochettes Personnalisées</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Phone Skin – Pochettes Personnalisées Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --gold: #c9a96e;
-    --gold-light: #e8d5a3;
-    --gold-dark: #9a7840;
-    --black: #0a0a0a;
-    --dark: #111111;
-    --dark2: #1a1a1a;
-    --dark3: #242424;
-    --gray: #888888;
-    --gray-light: #cccccc;
-    --white: #fafafa;
-    --cream: #f5f0e8;
-    --font-display: 'Cormorant Garamond', serif;
-    --font-body: 'DM Sans', sans-serif;
-  }
+:root {
+  --gold: #b8936a;
+  --gold-light: #d4aa82;
+  --gold-deep: #8a6342;
+  --gold-pale: #f5ede3;
+  --black: #1a1208;
+  --ink: #2d2416;
+  --ink-mid: #5c4d38;
+  --ink-light: #9c8a72;
+  --sand: #f0e8dc;
+  --cream: #faf7f3;
+  --white: #ffffff;
+  --border: rgba(184,147,106,0.18);
+  --border-strong: rgba(184,147,106,0.35);
+  --shadow-sm: 0 2px 12px rgba(45,36,22,0.06);
+  --shadow-md: 0 8px 32px rgba(45,36,22,0.1);
+  --shadow-lg: 0 20px 60px rgba(45,36,22,0.13);
+  --shadow-xl: 0 40px 100px rgba(45,36,22,0.16);
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Outfit', sans-serif;
+  --radius: 16px;
+  --radius-sm: 8px;
+  --radius-lg: 24px;
+}
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-  html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--ink);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
 
-  body {
-    font-family: var(--font-body);
-    background: var(--black);
-    color: var(--white);
-    overflow-x: hidden;
-    line-height: 1.6;
-  }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
 
-  /* ── SCROLLBAR ── */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: var(--dark); }
-  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--gold);
+  padding: 8px 2rem;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--white);
+  letter-spacing: 0.06em;
+}
+.topbar a { color: var(--white); font-weight: 700; text-decoration: underline; }
 
-  /* ── NAVBAR ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 4rem;
-    height: 72px;
-    background: rgba(10,10,10,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(201,169,110,0.15);
-    transition: all 0.4s ease;
-  }
-  nav.scrolled {
-    height: 60px;
-    background: rgba(10,10,10,0.97);
-    border-bottom-color: rgba(201,169,110,0.3);
-  }
-  .nav-logo {
-    font-family: var(--font-display);
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--gold);
-    letter-spacing: 0.03em;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-  .nav-logo span { color: var(--white); }
-  .nav-links {
-    display: flex; gap: 2.5rem; list-style: none; align-items: center;
-  }
-  .nav-links a {
-    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--gray-light); text-decoration: none;
-    position: relative; padding-bottom: 4px;
-    transition: color 0.3s;
-  }
-  .nav-links a::after {
-    content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
-    background: var(--gold); transition: width 0.35s ease;
-  }
-  .nav-links a:hover { color: var(--gold); }
-  .nav-links a:hover::after { width: 100%; }
-  .nav-cta {
-    background: var(--gold); color: var(--black) !important;
-    padding: 8px 20px !important; border-radius: 2px;
-    font-weight: 600 !important; letter-spacing: 0.1em !important;
-    transition: background 0.3s, transform 0.2s !important;
-  }
-  .nav-cta::after { display: none !important; }
-  .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); color: var(--black) !important; }
+/* ── NAVBAR ── */
+nav {
+  position: sticky; top: 0; z-index: 1000;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  padding: 0 5rem;
+  height: 70px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: var(--shadow-md); }
 
-  .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-  .burger span { width: 24px; height: 1.5px; background: var(--gold); transition: all 0.3s; display: block; }
-  .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-  .burger.open span:nth-child(2) { opacity: 0; }
-  .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem; font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+  white-space: nowrap;
+}
+.nav-logo .logo-mark {
+  width: 36px; height: 36px;
+  background: var(--gold);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; color: white;
+  flex-shrink: 0;
+}
+.nav-logo em { color: var(--gold); font-style: normal; }
 
-  .mobile-menu {
-    display: none; position: fixed; top: 72px; left: 0; right: 0;
-    background: rgba(10,10,10,0.98); backdrop-filter: blur(20px);
-    padding: 2rem; z-index: 999;
-    border-bottom: 1px solid rgba(201,169,110,0.2);
-    transform: translateY(-20px); opacity: 0;
-    transition: all 0.3s ease;
-    pointer-events: none;
-  }
-  .mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
-  .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; }
-  .mobile-menu a {
-    font-size: 1rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--gray-light); text-decoration: none; display: block;
-    transition: color 0.3s; padding: 4px 0;
-  }
-  .mobile-menu a:hover { color: var(--gold); }
+.nav-links {
+  display: flex; gap: 2.5rem; list-style: none; align-items: center;
+}
+.nav-links a {
+  font-size: 0.85rem; font-weight: 500; letter-spacing: 0.02em;
+  color: var(--ink-mid); text-decoration: none;
+  transition: color 0.25s;
+  position: relative; padding-bottom: 3px;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1.5px; background: var(--gold);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
 
-  /* ── HERO ── */
-  #accueil {
-    min-height: 100vh; display: flex; align-items: center;
-    padding: 80px 4rem 0;
-    position: relative; overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0; z-index: 0;
-    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,169,110,0.08) 0%, transparent 70%),
-                radial-gradient(ellipse 50% 80% at 10% 50%, rgba(201,169,110,0.05) 0%, transparent 60%);
-  }
-  .hero-bg::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(201,169,110,0.04) 79px, rgba(201,169,110,0.04) 80px),
-      repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(201,169,110,0.04) 79px, rgba(201,169,110,0.04) 80px);
-  }
-  .hero-inner {
-    position: relative; z-index: 1;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 4rem; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto;
-  }
-  .hero-content { animation: fadeUp 0.9s ease both; }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(201,169,110,0.1); border: 1px solid rgba(201,169,110,0.3);
-    padding: 6px 16px; border-radius: 50px;
-    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1.5rem;
-  }
-  .hero-badge::before { content: '✦'; font-size: 0.6rem; }
-  .hero-title {
-    font-family: var(--font-display); font-size: clamp(3rem, 5vw, 5rem);
-    font-weight: 700; line-height: 1.05; margin-bottom: 1.5rem;
-    color: var(--white);
-  }
-  .hero-title em { color: var(--gold); font-style: italic; }
-  .hero-sub {
-    font-size: 1rem; color: var(--gray); max-width: 440px; line-height: 1.8;
-    margin-bottom: 2.5rem;
-  }
-  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--gold); color: var(--black);
-    padding: 14px 32px; border: none; border-radius: 2px;
-    font-family: var(--font-body); font-size: 0.82rem; font-weight: 600;
-    letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease; position: relative; overflow: hidden;
-  }
-  .btn-primary::before {
-    content: ''; position: absolute; inset: 0;
-    background: rgba(255,255,255,0.15);
-    transform: translateX(-100%) skewX(-15deg);
-    transition: transform 0.4s ease;
-  }
-  .btn-primary:hover::before { transform: translateX(150%) skewX(-15deg); }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(201,169,110,0.25); }
-  .btn-secondary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: transparent; color: var(--gold);
-    padding: 14px 28px; border: 1px solid rgba(201,169,110,0.4); border-radius: 2px;
-    font-family: var(--font-body); font-size: 0.82rem; font-weight: 500;
-    letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
-    text-decoration: none; transition: all 0.3s ease;
-  }
-  .btn-secondary:hover { background: rgba(201,169,110,0.08); border-color: var(--gold); transform: translateY(-2px); }
-  .hero-visual {
-    display: flex; justify-content: center; align-items: center;
-    animation: fadeUp 0.9s 0.2s ease both;
-    position: relative;
-  }
-  .hero-phone-showcase {
-    position: relative; width: 340px; height: 480px;
-  }
-  .phone-card {
-    position: absolute; background: var(--dark2);
-    border: 1px solid rgba(201,169,110,0.2);
-    border-radius: 20px; overflow: hidden;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
-    transition: transform 0.6s ease;
-  }
-  .phone-card:hover { transform: translateY(-8px) rotate(0deg) !important; }
-  .phone-card.card-1 { width: 200px; height: 300px; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-5deg); z-index: 3; }
-  .phone-card.card-2 { width: 180px; height: 270px; top: 20%; left: 10%; transform: rotate(8deg); z-index: 2; opacity: 0.7; }
-  .phone-card.card-3 { width: 170px; height: 255px; bottom: 5%; right: 5%; transform: rotate(-3deg); z-index: 2; opacity: 0.65; }
-  .phone-inner { font-size: 5rem; }
-  .phone-label {
-    margin-top: 12px; font-size: 0.7rem; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--gold); font-weight: 500;
-  }
-  .phone-tag {
-    position: absolute; top: 12px; right: 12px;
-    background: rgba(201,169,110,0.15); border: 1px solid rgba(201,169,110,0.3);
-    padding: 3px 8px; border-radius: 50px;
-    font-size: 0.6rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase;
-  }
-  .floating-badge {
-    position: absolute; background: var(--dark3);
-    border: 1px solid rgba(201,169,110,0.25); border-radius: 12px;
-    padding: 10px 16px; display: flex; align-items: center; gap: 8px;
-    font-size: 0.75rem; white-space: nowrap;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-  }
-  .floating-badge .dot { width: 8px; height: 8px; border-radius: 50%; }
-  .fb-1 { top: 0; right: -30px; animation: float 3s ease-in-out infinite; }
-  .fb-2 { bottom: 30px; left: -20px; animation: float 3s 1.5s ease-in-out infinite; }
-  .fb-1 .dot { background: #4ade80; }
-  .fb-2 .dot { background: var(--gold); }
+.nav-cta {
+  background: var(--ink) !important; color: var(--white) !important;
+  padding: 9px 22px; border-radius: 50px;
+  font-weight: 600 !important; font-size: 0.82rem !important;
+  transition: background 0.3s, transform 0.2s !important;
+}
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--gold) !important; transform: translateY(-1px) !important; color: var(--white) !important; }
 
-  /* ── STATS BAR ── */
-  .stats-bar {
-    background: var(--dark2); border-top: 1px solid rgba(201,169,110,0.1);
-    border-bottom: 1px solid rgba(201,169,110,0.1);
-    padding: 1.5rem 4rem;
-  }
-  .stats-inner {
-    max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 1rem; text-align: center;
-  }
-  .stat-item {}
-  .stat-num {
-    font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--gold);
-  }
-  .stat-label { font-size: 0.75rem; color: var(--gray); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
+.burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.burger span { width: 22px; height: 1.5px; background: var(--ink); transition: all 0.3s; display: block; }
+.burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-  /* ── SECTIONS COMMON ── */
-  section { padding: 6rem 4rem; }
-  .section-header { text-align: center; margin-bottom: 4rem; }
-  .section-eyebrow {
-    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1rem; display: block;
-  }
-  .section-title {
-    font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700; color: var(--white); line-height: 1.1; margin-bottom: 1rem;
-  }
-  .section-title em { color: var(--gold); font-style: italic; }
-  .section-sub { font-size: 0.95rem; color: var(--gray); max-width: 500px; margin: 0 auto; line-height: 1.8; }
+.mobile-menu {
+  display: none; position: fixed; top: 70px; left: 0; right: 0;
+  background: rgba(255,255,255,0.98); backdrop-filter: blur(20px);
+  padding: 1.5rem 2rem; z-index: 999;
+  border-bottom: 1px solid var(--border);
+  transform: translateY(-10px); opacity: 0; transition: all 0.3s;
+  pointer-events: none;
+}
+.mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+.mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+.mobile-menu a {
+  font-size: 1rem; font-weight: 500; color: var(--ink-mid);
+  text-decoration: none; display: block; padding: 6px 0;
+  transition: color 0.25s;
+}
+.mobile-menu a:hover { color: var(--gold); }
 
-  /* ── PRODUCTS ── */
-  #produits { background: var(--dark); }
-  .product-grid {
-    max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-  }
-  .product-card {
-    background: var(--dark2); border: 1px solid rgba(201,169,110,0.12);
-    border-radius: 12px; overflow: hidden;
-    transition: all 0.4s ease; cursor: pointer; position: relative;
-  }
-  .product-card:hover { border-color: rgba(201,169,110,0.4); transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
-  .product-img {
-    height: 220px; display: flex; align-items: center; justify-content: center;
-    font-size: 4.5rem; position: relative;
-    background: linear-gradient(135deg, var(--dark3) 0%, rgba(201,169,110,0.05) 100%);
-  }
-  .product-badge {
-    position: absolute; top: 12px; left: 12px;
-    background: var(--gold); color: var(--black);
-    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 3px 10px; border-radius: 50px;
-  }
-  .product-body { padding: 1.25rem; }
-  .product-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--white); margin-bottom: 4px; }
-  .product-model { font-size: 0.75rem; color: var(--gray); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
-  .product-features { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
-  .feat-tag {
-    font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase;
-    background: rgba(201,169,110,0.08); border: 1px solid rgba(201,169,110,0.2);
-    color: var(--gold-light); padding: 3px 10px; border-radius: 50px;
-  }
-  .product-footer { display: flex; align-items: center; justify-content: space-between; }
-  .product-price { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--gold); }
-  .product-price span { font-size: 0.8rem; color: var(--gray); font-family: var(--font-body); font-weight: 400; }
-  .btn-wa {
-    display: inline-flex; align-items: center; gap: 7px;
-    background: #25D366; color: #fff;
-    padding: 9px 16px; border-radius: 6px; border: none;
-    font-family: var(--font-body); font-size: 0.75rem; font-weight: 600;
-    letter-spacing: 0.06em; cursor: pointer; text-decoration: none;
-    transition: all 0.3s; white-space: nowrap;
-  }
-  .btn-wa:hover { background: #1fb855; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(37,211,102,0.3); }
-  .btn-wa svg { width: 14px; height: 14px; flex-shrink: 0; }
+/* ── HERO ── */
+#accueil {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, var(--cream) 0%, var(--white) 50%, var(--gold-pale) 100%);
+}
 
-  /* ── PERSONALISATION ── */
-  #personnalisation { background: var(--black); }
-  .perso-wrapper { max-width: 900px; margin: 0 auto; }
-  .step-indicator {
-    display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 3rem;
-    overflow-x: auto; padding-bottom: 4px;
-  }
-  .step-item {
-    display: flex; align-items: center; gap: 0;
-    flex-shrink: 0;
-  }
-  .step-circle {
-    width: 40px; height: 40px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.85rem; font-weight: 600; border: 2px solid rgba(201,169,110,0.3);
-    color: var(--gray); background: var(--dark2);
-    transition: all 0.4s; position: relative; z-index: 1;
-  }
-  .step-circle.active { background: var(--gold); color: var(--black); border-color: var(--gold); }
-  .step-circle.done { background: var(--gold-dark); color: var(--white); border-color: var(--gold-dark); }
-  .step-line { width: 60px; height: 1px; background: rgba(201,169,110,0.2); transition: background 0.4s; flex-shrink: 0; }
-  .step-line.done { background: var(--gold-dark); }
-  .step-label {
-    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--gray); margin-top: 6px; text-align: center; white-space: nowrap;
-    transition: color 0.4s;
-  }
-  .step-label.active { color: var(--gold); }
-  .step-col { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+.hero-bg-decoration {
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+}
+.hero-circle {
+  position: absolute; border-radius: 50%;
+  background: radial-gradient(circle, rgba(184,147,106,0.12) 0%, transparent 70%);
+}
+.hero-circle.c1 { width: 700px; height: 700px; top: -200px; right: -150px; }
+.hero-circle.c2 { width: 400px; height: 400px; bottom: -100px; left: -100px; }
+.hero-grid-lines {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(184,147,106,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(184,147,106,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
 
-  .perso-step { display: none; animation: fadeUp 0.4s ease; }
-  .perso-step.active { display: block; }
-  .step-title {
-    font-family: var(--font-display); font-size: 1.6rem; font-weight: 600;
-    color: var(--white); margin-bottom: 1.5rem; text-align: center;
-  }
-  .brands-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 600px; margin: 0 auto 2rem; }
-  .brand-btn {
-    background: var(--dark2); border: 2px solid rgba(201,169,110,0.15); border-radius: 10px;
-    padding: 1.2rem 1rem; cursor: pointer; text-align: center;
-    transition: all 0.3s; color: var(--gray-light);
-    font-family: var(--font-body); font-size: 0.9rem; font-weight: 500;
-  }
-  .brand-btn .brand-icon { font-size: 2rem; margin-bottom: 8px; display: block; }
-  .brand-btn:hover, .brand-btn.selected { border-color: var(--gold); color: var(--gold); background: rgba(201,169,110,0.07); transform: translateY(-3px); }
+.hero-inner {
+  position: relative; z-index: 1;
+  width: 100%; max-width: 1280px; margin: 0 auto;
+  padding: 5rem 5rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+}
 
-  .models-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; max-width: 600px; margin: 0 auto 2rem; }
-  .model-btn {
-    background: var(--dark2); border: 2px solid rgba(201,169,110,0.15); border-radius: 8px;
-    padding: 1rem; cursor: pointer; text-align: left;
-    transition: all 0.3s; color: var(--gray-light); font-family: var(--font-body);
-  }
-  .model-btn .model-name { font-size: 0.9rem; font-weight: 500; color: var(--white); }
-  .model-btn .model-sub { font-size: 0.72rem; color: var(--gray); margin-top: 2px; }
-  .model-btn:hover, .model-btn.selected { border-color: var(--gold); background: rgba(201,169,110,0.07); transform: translateY(-2px); }
+.hero-content { animation: heroIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
-  .options-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
-  .option-group { }
-  .option-label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; display: block; }
-  .color-swatches { display: flex; flex-wrap: wrap; gap: 8px; }
-  .swatch {
-    width: 36px; height: 36px; border-radius: 50%; cursor: pointer;
-    border: 2px solid transparent; transition: all 0.3s; position: relative;
-  }
-  .swatch:hover, .swatch.selected { border-color: var(--gold); transform: scale(1.15); box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
-  .swatch.selected::after { content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
-  .material-list { display: flex; flex-direction: column; gap: 6px; }
-  .mat-btn {
-    background: var(--dark2); border: 1px solid rgba(201,169,110,0.15); border-radius: 6px;
-    padding: 8px 12px; font-size: 0.8rem; color: var(--gray-light); cursor: pointer;
-    transition: all 0.25s; text-align: left; font-family: var(--font-body);
-  }
-  .mat-btn:hover, .mat-btn.selected { border-color: var(--gold); color: var(--gold); background: rgba(201,169,110,0.07); }
-  .design-list { display: flex; flex-direction: column; gap: 6px; }
-  .design-btn {
-    background: var(--dark2); border: 1px solid rgba(201,169,110,0.15); border-radius: 6px;
-    padding: 8px 12px; font-size: 0.8rem; color: var(--gray-light); cursor: pointer;
-    transition: all 0.25s; text-align: left; font-family: var(--font-body);
-  }
-  .design-btn:hover, .design-btn.selected { border-color: var(--gold); color: var(--gold); background: rgba(201,169,110,0.07); }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--white); border: 1px solid var(--border-strong);
+  padding: 7px 16px; border-radius: 50px;
+  font-size: 0.73rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: blink 2s ease-in-out infinite; }
 
-  .order-preview {
-    background: var(--dark2); border: 1px solid rgba(201,169,110,0.2); border-radius: 12px;
-    padding: 2rem; margin-bottom: 2rem; text-align: center;
-  }
-  .order-preview h3 { font-family: var(--font-display); font-size: 1.4rem; color: var(--gold); margin-bottom: 1.5rem; }
-  .preview-details { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem; }
-  .preview-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid rgba(201,169,110,0.08); }
-  .preview-row:last-child { border: none; }
-  .preview-key { font-size: 0.75rem; color: var(--gray); letter-spacing: 0.08em; text-transform: uppercase; }
-  .preview-val { font-size: 0.9rem; color: var(--white); font-weight: 500; }
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5.5vw, 5.2rem);
+  font-weight: 900; line-height: 1.05;
+  color: var(--ink); margin-bottom: 1.5rem;
+}
+.hero-title em { color: var(--gold); font-style: italic; }
 
-  .step-nav { display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; }
-  .btn-back {
-    background: transparent; border: 1px solid rgba(201,169,110,0.3);
-    color: var(--gold); padding: 12px 28px; border-radius: 4px;
-    font-family: var(--font-body); font-size: 0.8rem; font-weight: 500;
-    letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.3s;
-  }
-  .btn-back:hover { background: rgba(201,169,110,0.08); }
-  .btn-next {
-    background: var(--gold); border: none; color: var(--black);
-    padding: 12px 32px; border-radius: 4px;
-    font-family: var(--font-body); font-size: 0.8rem; font-weight: 700;
-    letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.3s;
-  }
-  .btn-next:hover { background: var(--gold-light); transform: translateY(-2px); }
-  .btn-next:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+.hero-line {
+  width: 60px; height: 3px;
+  background: linear-gradient(to right, var(--gold), var(--gold-light));
+  border-radius: 2px; margin-bottom: 1.5rem;
+}
 
-  /* ── ABOUT ── */
-  #a-propos { background: var(--dark); }
-  .about-inner {
-    max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
-  }
-  .about-visual {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
-  }
-  .about-tile {
-    background: var(--dark2); border: 1px solid rgba(201,169,110,0.12);
-    border-radius: 12px; padding: 1.5rem; text-align: center;
-    transition: all 0.3s;
-  }
-  .about-tile:hover { border-color: rgba(201,169,110,0.3); transform: translateY(-4px); }
-  .about-tile:nth-child(2) { margin-top: 2rem; }
-  .about-tile:nth-child(3) { margin-top: -2rem; }
-  .about-tile-icon { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; }
-  .about-tile-label { font-size: 0.85rem; font-weight: 500; color: var(--gray-light); }
-  .about-content {}
-  .about-content p { font-size: 0.95rem; color: var(--gray); line-height: 1.9; margin-bottom: 1rem; }
-  .about-values { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
-  .value-item { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; color: var(--gray-light); }
-  .value-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+.hero-sub {
+  font-size: 1rem; color: var(--ink-mid); max-width: 420px;
+  line-height: 1.85; margin-bottom: 2.5rem; font-weight: 300;
+}
 
-  /* ── CONTACT ── */
-  #contact { background: var(--black); }
-  .contact-inner {
-    max-width: 800px; margin: 0 auto;
-  }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-  .contact-info {}
-  .contact-info h3 { font-family: var(--font-display); font-size: 1.5rem; color: var(--white); margin-bottom: 1.5rem; }
-  .contact-item { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 1.25rem; }
-  .contact-icon { width: 40px; height: 40px; background: rgba(201,169,110,0.1); border: 1px solid rgba(201,169,110,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
-  .contact-text { font-size: 0.88rem; }
-  .contact-text strong { display: block; color: var(--gold); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 3px; }
-  .contact-text span { color: var(--gray-light); }
-  .contact-form {}
-  .form-group { margin-bottom: 1.25rem; }
-  .form-group label { display: block; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
-  .form-group input, .form-group textarea, .form-group select {
-    width: 100%; background: var(--dark2); border: 1px solid rgba(201,169,110,0.2);
-    border-radius: 6px; padding: 10px 14px; color: var(--white);
-    font-family: var(--font-body); font-size: 0.9rem;
-    transition: border-color 0.3s; outline: none;
-  }
-  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); }
-  .form-group textarea { resize: vertical; min-height: 100px; }
-  .form-group select option { background: var(--dark2); }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-bottom: 2.5rem; }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--dark2); border-top: 1px solid rgba(201,169,110,0.12);
-    padding: 4rem 4rem 2rem;
-  }
-  .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 3rem; margin-bottom: 3rem; }
-  .footer-brand {}
-  .footer-logo { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--gold); margin-bottom: 1rem; display: block; }
-  .footer-desc { font-size: 0.85rem; color: var(--gray); line-height: 1.8; margin-bottom: 1.5rem; max-width: 280px; }
-  .social-links { display: flex; gap: 10px; }
-  .social-btn {
-    width: 38px; height: 38px; background: rgba(201,169,110,0.08); border: 1px solid rgba(201,169,110,0.2);
-    border-radius: 8px; display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; text-decoration: none; color: var(--gray-light);
-    transition: all 0.3s;
-  }
-  .social-btn:hover { background: var(--gold); color: var(--black); border-color: var(--gold); transform: translateY(-3px); }
-  .footer-col {}
-  .footer-col h4 { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
-  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-  .footer-links a { font-size: 0.85rem; color: var(--gray); text-decoration: none; transition: color 0.3s; }
-  .footer-links a:hover { color: var(--gold-light); }
-  .footer-contact-list { display: flex; flex-direction: column; gap: 0.75rem; }
-  .fc-item { display: flex; align-items: flex-start; gap: 10px; font-size: 0.82rem; color: var(--gray); }
-  .fc-icon { color: var(--gold); margin-top: 1px; flex-shrink: 0; }
-  .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 1.5rem; border-top: 1px solid rgba(201,169,110,0.08); display: flex; justify-content: space-between; align-items: center; }
-  .footer-copy { font-size: 0.78rem; color: var(--gray); }
-  .footer-copy span { color: var(--gold); }
-  .footer-legal { display: flex; gap: 1.5rem; }
-  .footer-legal a { font-size: 0.75rem; color: var(--gray); text-decoration: none; transition: color 0.3s; }
-  .footer-legal a:hover { color: var(--gold-light); }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--ink); color: var(--white);
+  padding: 15px 32px; border: none; border-radius: 50px;
+  font-family: var(--font-body); font-size: 0.85rem; font-weight: 600;
+  letter-spacing: 0.04em; cursor: pointer; text-decoration: none;
+  transition: all 0.3s; box-shadow: 0 4px 20px rgba(45,36,22,0.25);
+  position: relative; overflow: hidden;
+}
+.btn-primary::after {
+  content: ''; position: absolute; inset: 0;
+  background: var(--gold); border-radius: 50px;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+}
+.btn-primary:hover::after { transform: scaleX(1); }
+.btn-primary > * { position: relative; z-index: 1; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(184,147,106,0.35); }
 
-  /* ── WHATSAPP FLOAT ── */
-  .wa-float {
-    position: fixed; bottom: 28px; right: 28px; z-index: 999;
-    background: #25D366; width: 56px; height: 56px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 8px 24px rgba(37,211,102,0.4);
-    text-decoration: none; transition: all 0.3s;
-    animation: pulse-wa 2.5s ease-in-out infinite;
-  }
-  .wa-float:hover { transform: scale(1.1); box-shadow: 0 12px 32px rgba(37,211,102,0.5); }
-  .wa-float svg { width: 28px; height: 28px; }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--ink);
+  padding: 14px 28px; border: 1.5px solid var(--border-strong); border-radius: 50px;
+  font-family: var(--font-body); font-size: 0.85rem; font-weight: 500;
+  cursor: pointer; text-decoration: none; transition: all 0.3s;
+}
+.btn-outline:hover { background: var(--ink); color: var(--white); border-color: var(--ink); transform: translateY(-2px); }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-  @keyframes pulse-wa {
-    0%, 100% { box-shadow: 0 8px 24px rgba(37,211,102,0.4); }
-    50% { box-shadow: 0 8px 32px rgba(37,211,102,0.7); }
-  }
+.hero-trust { display: flex; align-items: center; gap: 1rem; }
+.trust-avatars { display: flex; }
+.trust-avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  border: 2px solid var(--white); margin-left: -10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem;
+}
+.trust-avatar:first-child { margin-left: 0; }
+.trust-text { font-size: 0.8rem; color: var(--ink-mid); }
+.trust-text strong { color: var(--gold); display: block; font-size: 0.85rem; }
 
-  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+/* Hero visual */
+.hero-visual {
+  display: flex; justify-content: center; align-items: center;
+  animation: heroIn 0.9s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.showcase-wrap { position: relative; width: 360px; height: 440px; }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 1024px) {
-    nav { padding: 0 2rem; }
-    section { padding: 5rem 2rem; }
-    .stats-bar { padding: 1.5rem 2rem; }
-    #accueil { padding: 80px 2rem 0; }
-    .hero-inner { gap: 2rem; }
-    .product-grid { grid-template-columns: repeat(2, 1fr); }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .about-inner { gap: 3rem; }
-  }
-  @media (max-width: 768px) {
-    nav { padding: 0 1.5rem; }
-    .nav-links { display: none; }
-    .burger { display: flex; }
-    .mobile-menu { display: block; }
-    #accueil { padding: 80px 1.5rem 0; }
-    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .hero-visual { order: -1; }
-    .hero-phone-showcase { width: 280px; height: 380px; }
-    .phone-card.card-1 { width: 160px; height: 240px; }
-    .phone-card.card-2 { width: 140px; height: 210px; }
-    .phone-card.card-3 { width: 130px; height: 195px; }
-    section { padding: 4rem 1.5rem; }
-    .stats-bar { padding: 1.5rem; }
-    .stats-inner { grid-template-columns: repeat(2, 1fr); }
-    .product-grid { grid-template-columns: 1fr; }
-    .about-inner { grid-template-columns: 1fr; }
-    .about-visual { order: -1; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .options-grid { grid-template-columns: 1fr; }
-    .brands-grid { grid-template-columns: repeat(2, 1fr); }
-    .models-grid { grid-template-columns: 1fr; }
-    footer { padding: 3rem 1.5rem 1.5rem; }
-    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-    .fb-1, .fb-2 { display: none; }
-  }
+.case-card {
+  position: absolute; border-radius: 20px; overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid rgba(255,255,255,0.9);
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+.case-card:hover { transform: scale(1.04) rotate(0deg) translateY(-8px) !important; z-index: 10 !important; }
+
+.case-card.main {
+  width: 210px; height: 310px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) rotate(-3deg);
+  z-index: 3;
+}
+.case-card.side1 {
+  width: 175px; height: 260px;
+  top: 10%; left: 5%;
+  transform: rotate(8deg);
+  z-index: 2; opacity: 0.8;
+}
+.case-card.side2 {
+  width: 165px; height: 245px;
+  bottom: 5%; right: 5%;
+  transform: rotate(-5deg);
+  z-index: 2; opacity: 0.75;
+}
+
+.case-card img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.case-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(26,18,8,0.7), transparent);
+  padding: 1.5rem 1rem 0.75rem;
+  display: flex; align-items: flex-end; justify-content: space-between;
+}
+.case-label span { font-size: 0.72rem; font-weight: 600; color: white; letter-spacing: 0.08em; text-transform: uppercase; }
+.case-label .case-tag { background: var(--gold); color: white; padding: 2px 8px; border-radius: 20px; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em; }
+
+.float-pill {
+  position: absolute;
+  background: var(--white); border-radius: 50px;
+  padding: 8px 14px; display: flex; align-items: center; gap: 8px;
+  box-shadow: var(--shadow-lg); border: 1px solid var(--border);
+  font-size: 0.75rem; font-weight: 500; color: var(--ink);
+  white-space: nowrap; animation: floatY 3s ease-in-out infinite;
+}
+.float-pill .fp-icon { font-size: 1rem; }
+.pill1 { top: -10px; right: -30px; animation-delay: 0s; }
+.pill2 { bottom: 20px; left: -30px; animation-delay: 1.5s; }
+
+/* ── STATS ── */
+.stats-section {
+  background: var(--ink);
+  padding: 3rem 5rem;
+}
+.stats-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1rem; text-align: center;
+}
+.stat-item {}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 2.8rem; font-weight: 900; color: var(--gold);
+  line-height: 1;
+}
+.stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 6px; }
+
+/* ── COMMON SECTION ── */
+section { padding: 7rem 5rem; }
+.section-header { text-align: center; margin-bottom: 4.5rem; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+}
+.eyebrow::before, .eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--gold); opacity: 0.5; }
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+  color: var(--ink); line-height: 1.1; margin-bottom: 1rem;
+}
+.section-title em { color: var(--gold); font-style: italic; }
+.section-sub { font-size: 0.95rem; color: var(--ink-mid); max-width: 480px; margin: 0 auto; line-height: 1.85; font-weight: 300; }
+
+/* ── PRODUCTS ── */
+#produits { background: var(--cream); }
+
+.product-grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+
+.product-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+}
+.product-card:hover {
+  border-color: var(--gold-light);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+}
+
+.product-img {
+  height: 230px; overflow: hidden; position: relative;
+  background: var(--sand);
+}
+.product-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.product-card:hover .product-img img { transform: scale(1.06); }
+
+.product-badge {
+  position: absolute; top: 14px; left: 14px;
+  background: var(--ink); color: var(--white);
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 50px;
+  z-index: 1;
+}
+.product-badge.new { background: var(--gold); }
+.product-badge.pop { background: #2b7a50; }
+
+.product-body { padding: 1.5rem; }
+.product-name { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+.product-model { font-size: 0.75rem; font-weight: 500; color: var(--ink-light); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1rem; }
+
+.product-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 1.25rem; }
+.tag {
+  font-size: 0.62rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  background: var(--gold-pale); color: var(--gold-deep);
+  padding: 4px 10px; border-radius: 50px;
+}
+
+.product-footer { display: flex; align-items: center; justify-content: space-between; }
+.price { font-family: var(--font-display); font-size: 1.5rem; font-weight: 900; color: var(--ink); }
+.price span { font-family: var(--font-body); font-size: 0.8rem; font-weight: 400; color: var(--ink-light); }
+
+.btn-wa {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: #25D366; color: var(--white);
+  padding: 9px 18px; border-radius: 50px; border: none;
+  font-family: var(--font-body); font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.04em; cursor: pointer; text-decoration: none;
+  transition: all 0.3s; white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(37,211,102,0.3);
+}
+.btn-wa:hover { background: #1da851; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,0.4); }
+.btn-wa svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* ── PERSONALISATION ── */
+#personnalisation { background: var(--white); }
+
+.perso-wrapper { max-width: 860px; margin: 0 auto; }
+
+/* Step indicator */
+.step-bar {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; margin-bottom: 3.5rem;
+  padding: 1.5rem; background: var(--cream); border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+.step-col { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+.step-circle {
+  width: 42px; height: 42px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem; font-weight: 700;
+  background: var(--white); color: var(--ink-light);
+  border: 2px solid var(--border-strong);
+  transition: all 0.4s; position: relative;
+}
+.step-circle.active { background: var(--gold); color: var(--white); border-color: var(--gold); box-shadow: 0 4px 16px rgba(184,147,106,0.4); }
+.step-circle.done { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.step-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); margin-top: 6px; transition: color 0.4s; }
+.step-label.active { color: var(--gold); }
+.step-label.done { color: var(--ink); }
+.step-connector { width: 60px; height: 2px; background: var(--border); margin-bottom: 1.5rem; transition: background 0.4s; flex-shrink: 0; }
+.step-connector.done { background: var(--ink); }
+
+/* Step content */
+.perso-step { display: none; animation: stepIn 0.4s cubic-bezier(0.22,1,0.36,1); }
+.perso-step.active { display: block; }
+.step-title { font-family: var(--font-display); font-size: 1.7rem; font-weight: 700; color: var(--ink); margin-bottom: 2rem; text-align: center; }
+
+.brands-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 620px; margin: 0 auto 2rem; }
+.brand-btn {
+  background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius);
+  padding: 1.4rem 1rem; cursor: pointer; text-align: center;
+  transition: all 0.3s; color: var(--ink-mid);
+  font-family: var(--font-body); font-size: 0.9rem; font-weight: 500;
+}
+.brand-icon { font-size: 2.2rem; margin-bottom: 8px; display: block; }
+.brand-btn:hover, .brand-btn.selected {
+  border-color: var(--gold); color: var(--gold-deep);
+  background: var(--gold-pale); transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.models-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; max-width: 620px; margin: 0 auto 2rem; }
+.model-btn {
+  background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  padding: 1rem 1.2rem; cursor: pointer; text-align: left;
+  transition: all 0.25s; font-family: var(--font-body);
+}
+.model-name { font-size: 0.9rem; font-weight: 600; color: var(--ink); }
+.model-sub { font-size: 0.72rem; color: var(--ink-light); margin-top: 2px; font-weight: 400; }
+.model-btn:hover, .model-btn.selected { border-color: var(--gold); background: var(--gold-pale); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+
+.options-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+.option-group {}
+.option-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.85rem; display: block; }
+
+.color-swatches { display: flex; flex-wrap: wrap; gap: 8px; }
+.swatch {
+  width: 34px; height: 34px; border-radius: 50%; cursor: pointer;
+  border: 2.5px solid transparent; transition: all 0.25s;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+.swatch:hover, .swatch.selected { border-color: var(--gold); transform: scale(1.15); box-shadow: 0 4px 14px rgba(184,147,106,0.35); }
+.swatch.selected::after { content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+
+.option-list { display: flex; flex-direction: column; gap: 6px; }
+.option-btn {
+  background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  padding: 9px 12px; font-size: 0.8rem; font-weight: 500; color: var(--ink-mid); cursor: pointer;
+  transition: all 0.25s; text-align: left; font-family: var(--font-body);
+}
+.option-btn:hover, .option-btn.selected { border-color: var(--gold); color: var(--gold-deep); background: var(--gold-pale); }
+
+/* Summary */
+.summary-box {
+  background: var(--cream); border: 1px solid var(--border-strong); border-radius: var(--radius-lg);
+  padding: 2.5rem; margin-bottom: 2rem;
+}
+.summary-box h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--gold); margin-bottom: 1.5rem; text-align: center; }
+.summary-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.summary-row:last-child { border: none; }
+.summary-key { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); }
+.summary-val { font-size: 0.9rem; font-weight: 600; color: var(--ink); }
+
+/* Step nav */
+.step-nav { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; }
+.btn-back {
+  background: transparent; border: 1.5px solid var(--border-strong);
+  color: var(--ink-mid); padding: 12px 28px; border-radius: 50px;
+  font-family: var(--font-body); font-size: 0.82rem; font-weight: 600;
+  cursor: pointer; transition: all 0.3s;
+}
+.btn-back:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.btn-next {
+  background: var(--ink); border: none; color: var(--white);
+  padding: 12px 34px; border-radius: 50px;
+  font-family: var(--font-body); font-size: 0.82rem; font-weight: 700;
+  cursor: pointer; transition: all 0.3s;
+  box-shadow: 0 4px 16px rgba(45,36,22,0.2);
+}
+.btn-next:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(184,147,106,0.4); }
+.btn-next:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* ── ABOUT ── */
+#a-propos { background: var(--cream); }
+.about-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+}
+.about-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.about-tile {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.75rem; text-align: center;
+  transition: all 0.3s;
+}
+.about-tile:hover { border-color: var(--gold-light); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.about-tile:nth-child(2) { margin-top: 2rem; }
+.about-tile:nth-child(3) { margin-top: -2rem; }
+.tile-icon { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; }
+.tile-label { font-size: 0.85rem; font-weight: 600; color: var(--ink-mid); }
+
+.about-content {}
+.about-content p { font-size: 0.95rem; color: var(--ink-mid); line-height: 1.95; margin-bottom: 1rem; font-weight: 300; }
+
+.value-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 2rem; }
+.value-item { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; color: var(--ink-mid); font-weight: 400; }
+.value-check {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--gold-pale); border: 1px solid var(--gold-light);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 0.7rem; color: var(--gold);
+}
+
+/* ── CONTACT ── */
+#contact { background: var(--white); }
+.contact-inner { max-width: 860px; margin: 0 auto; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+
+.contact-info h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--ink); margin-bottom: 2rem; }
+.contact-item { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 1.25rem; }
+.c-icon {
+  width: 42px; height: 42px; border-radius: var(--radius-sm);
+  background: var(--gold-pale); border: 1px solid var(--border-strong);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.c-text strong { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 3px; }
+.c-text span { font-size: 0.88rem; color: var(--ink-mid); }
+
+.form-group { margin-bottom: 1.25rem; }
+.form-group label { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 7px; }
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  background: var(--cream); border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm); padding: 11px 14px;
+  color: var(--ink); font-family: var(--font-body); font-size: 0.9rem;
+  outline: none; transition: border-color 0.25s, box-shadow 0.25s;
+  font-weight: 400;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(184,147,106,0.12);
+  background: var(--white);
+}
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-group select option { background: var(--white); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  padding: 5rem 5rem 2.5rem;
+}
+.footer-grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 3rem;
+  margin-bottom: 3.5rem;
+}
+.footer-logo { font-family: var(--font-display); font-size: 1.8rem; font-weight: 900; color: var(--gold); margin-bottom: 1rem; display: block; }
+.footer-desc { font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.9; margin-bottom: 1.5rem; max-width: 280px; font-weight: 300; }
+.social-links { display: flex; gap: 8px; }
+.social-btn {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; text-decoration: none; color: rgba(255,255,255,0.5);
+  transition: all 0.3s;
+}
+.social-btn:hover { background: var(--gold); color: var(--white); border-color: var(--gold); transform: translateY(-3px); }
+.footer-col h4 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-links a { font-size: 0.85rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.25s; font-weight: 300; }
+.footer-links a:hover { color: var(--gold-light); }
+.fc-item { display: flex; align-items: flex-start; gap: 10px; font-size: 0.82rem; color: rgba(255,255,255,0.4); margin-bottom: 0.6rem; font-weight: 300; }
+.fc-icon { color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+.footer-bottom {
+  max-width: 1200px; margin: 0 auto;
+  padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.3); }
+.footer-copy em { color: var(--gold); font-style: normal; }
+.footer-legal { display: flex; gap: 1.5rem; }
+.footer-legal a { font-size: 0.75rem; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.25s; }
+.footer-legal a:hover { color: var(--gold-light); }
+
+/* ── WA FLOAT ── */
+.wa-float {
+  position: fixed; bottom: 28px; right: 28px; z-index: 999;
+  background: #25D366; width: 58px; height: 58px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 28px rgba(37,211,102,0.45);
+  text-decoration: none; transition: all 0.3s;
+  animation: pulseWA 2.5s ease-in-out infinite;
+}
+.wa-float:hover { transform: scale(1.1); box-shadow: 0 12px 36px rgba(37,211,102,0.55); }
+.wa-float svg { width: 28px; height: 28px; }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── ANIMATIONS ── */
+@keyframes heroIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes stepIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes pulseWA {
+  0%, 100% { box-shadow: 0 8px 28px rgba(37,211,102,0.45); }
+  50% { box-shadow: 0 8px 36px rgba(37,211,102,0.7), 0 0 0 10px rgba(37,211,102,0.08); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  nav, section, .stats-section, footer { padding-left: 2.5rem; padding-right: 2.5rem; }
+  .hero-inner { padding: 5rem 2.5rem; gap: 3rem; }
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .about-inner { gap: 3rem; }
+}
+@media (max-width: 768px) {
+  nav { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  .burger { display: flex; }
+  .mobile-menu { display: block; }
+  .hero-inner { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+  .hero-visual { order: -1; }
+  .showcase-wrap { width: 280px; height: 360px; }
+  .case-card.main { width: 175px; height: 260px; }
+  .case-card.side1 { width: 145px; height: 215px; }
+  .case-card.side2 { width: 135px; height: 200px; }
+  .pill1, .pill2 { display: none; }
+  section { padding: 4rem 1.5rem; }
+  .stats-section { padding: 2.5rem 1.5rem; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .product-grid { grid-template-columns: 1fr; }
+  .about-inner { grid-template-columns: 1fr; }
+  .about-visual { order: -1; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .options-grid { grid-template-columns: 1fr; }
+  .brands-grid { grid-template-columns: repeat(2, 1fr); }
+  .models-grid { grid-template-columns: 1fr; }
+  footer { padding: 3rem 1.5rem 1.5rem; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  .step-bar { gap: 0; }
+  .step-connector { width: 30px; }
+}
 </style>
 </head>
 <body>
 
+<!-- TOPBAR -->
+<div class="topbar">
+  🚚 Livraison gratuite à partir de 200 MAD · Commandez sur <a href="https://wa.me/212681049651">WhatsApp</a>
+</div>
+
 <!-- NAVBAR -->
 <nav id="navbar">
-  <a href="#accueil" class="nav-logo">Phone <span>Skin</span></a>
+  <a href="#accueil" class="nav-logo">
+    <div class="logo-mark">📱</div>
+    Phone <em>Skin</em>
+  </a>
   <ul class="nav-links">
     <li><a href="#accueil">Accueil</a></li>
     <li><a href="#produits">Produits</a></li>
@@ -577,9 +707,7 @@
     <li><a href="#contact">Contact</a></li>
     <li><a href="#personnalisation" class="nav-cta">Commander</a></li>
   </ul>
-  <div class="burger" id="burger">
-    <span></span><span></span><span></span>
-  </div>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
@@ -589,57 +717,65 @@
     <li><a href="#personnalisation" onclick="closeMobile()">Personnalisation</a></li>
     <li><a href="#a-propos" onclick="closeMobile()">À propos</a></li>
     <li><a href="#contact" onclick="closeMobile()">Contact</a></li>
-    <li><a href="#personnalisation" onclick="closeMobile()" style="color:var(--gold);font-weight:600;">✦ Commander maintenant</a></li>
+    <li><a href="#personnalisation" onclick="closeMobile()" style="color:var(--gold);font-weight:700;">✦ Commander maintenant</a></li>
   </ul>
 </div>
 
 <!-- HERO -->
 <section id="accueil">
-  <div class="hero-bg"></div>
+  <div class="hero-bg-decoration">
+    <div class="hero-circle c1"></div>
+    <div class="hero-circle c2"></div>
+    <div class="hero-grid-lines"></div>
+  </div>
   <div class="hero-inner">
     <div class="hero-content">
-      <span class="hero-badge">Collection Signature 2025</span>
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Collection Signature 2025
+      </div>
       <h1 class="hero-title">Votre téléphone,<br><em>votre identité</em></h1>
-      <p class="hero-sub">Des pochettes personnalisées de luxe, créées sur-mesure pour chaque modèle de téléphone. Qualité premium, livraison rapide, style unique.</p>
+      <div class="hero-line"></div>
+      <p class="hero-sub">Des pochettes personnalisées de luxe, créées sur‑mesure pour chaque modèle. Qualité premium, livraison express partout au Maroc.</p>
       <div class="hero-actions">
         <a href="#personnalisation" class="btn-primary">
-          ✦ Personnaliser maintenant
+          <span>✦</span><span>Personnaliser maintenant</span>
         </a>
-        <a href="#produits" class="btn-secondary">Voir les produits</a>
+        <a href="#produits" class="btn-outline">Voir les produits →</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-avatars">
+          <div class="trust-avatar">😊</div>
+          <div class="trust-avatar">🙂</div>
+          <div class="trust-avatar">😃</div>
+          <div class="trust-avatar">😄</div>
+        </div>
+        <div class="trust-text">
+          <strong>+500 clients satisfaits</strong>
+          Livraison en 24–48h
+        </div>
       </div>
     </div>
+
     <div class="hero-visual">
-      <div class="hero-phone-showcase">
-        <div class="phone-card card-2">
-  <div class="phone-inner" style="display:flex;align-items:center;justify-content:center;overflow:hidden;">
-    <img src="image/ihone2.jpeg" style="width:100%;height:100%;object-fit:cover;">
-  </div>
-  <div class="phone-label">Cuir</div>
-  <span class="phone-tag">Premium</span>
-</div>
-
-<div class="phone-card card-1">
-  <div class="phone-inner" style="display:flex;align-items:center;justify-content:center;overflow:hidden;">
-    <img src="image/iphone.jpeg" style="width:100%;height:100%;object-fit:cover;">
-  </div>
-  <div class="phone-label">Luxe</div>
-  <span class="phone-tag">Best Seller</span>
-</div>
-
-<div class="phone-card card-3">
-  <div class="phone-inner" style="display:flex;align-items:center;justify-content:center;overflow:hidden;">
-    <img src="image/samsung.jpg" style="width:100%;height:100%;object-fit:cover;">
-  </div>
-  <div class="phone-label">Custom</div>
-  <span class="phone-tag">New</span>
-</div>
-        <div class="floating-badge fb-1">
-          <span class="dot"></span>
-          <span style="color:var(--gray-light)">+500 clients satisfaits</span>
+      <div class="showcase-wrap">
+        <div class="case-card side1">
+          <img src="image/ihone2.jpeg" alt="Pochette Cuir">
+          <div class="case-label"><span>Cuir</span><span class="case-tag">Premium</span></div>
         </div>
-        <div class="floating-badge fb-2">
-          <span class="dot"></span>
-          <span style="color:var(--gray-light)">Livraison 24–48h</span>
+        <div class="case-card main">
+          <img src="image/iphone.jpeg" alt="Pochette Luxe">
+          <div class="case-label"><span>Luxe</span><span class="case-tag">Best Seller</span></div>
+        </div>
+        <div class="case-card side2">
+          <img src="image/samsung.jpg" alt="Pochette Custom">
+          <div class="case-label"><span>Custom</span><span class="case-tag">New</span></div>
+        </div>
+        <div class="float-pill pill1">
+          <span class="fp-icon">✅</span> 500+ clients satisfaits
+        </div>
+        <div class="float-pill pill2">
+          <span class="fp-icon">🚀</span> Livraison 24–48h
         </div>
       </div>
     </div>
@@ -647,234 +783,168 @@
 </section>
 
 <!-- STATS -->
-<div class="stats-bar reveal">
+<div class="stats-section reveal">
   <div class="stats-inner">
-    <div class="stat-item">
-      <div class="stat-num">500+</div>
-      <div class="stat-label">Clients satisfaits</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">50+</div>
-      <div class="stat-label">Modèles disponibles</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">6</div>
-      <div class="stat-label">Marques compatibles</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">24h</div>
-      <div class="stat-label">Délai de livraison</div>
-    </div>
+    <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Clients satisfaits</div></div>
+    <div class="stat-item"><div class="stat-num">50+</div><div class="stat-label">Modèles disponibles</div></div>
+    <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Marques compatibles</div></div>
+    <div class="stat-item"><div class="stat-num">24h</div><div class="stat-label">Délai de livraison</div></div>
   </div>
 </div>
 
 <!-- PRODUCTS -->
 <section id="produits">
-
   <div class="section-header reveal">
-    <span class="section-eyebrow">Notre collection</span>
+    <span class="eyebrow">Notre collection</span>
     <h2 class="section-title">Pochettes <em>Personnalisées</em></h2>
-    <p class="section-sub">
-      Choisissez votre modèle et personnalisez votre pochette avec votre style unique.
-    </p>
+    <p class="section-sub">Choisissez votre modèle et personnalisez votre pochette avec votre style unique.</p>
   </div>
-
   <div class="product-grid">
 
-    <!-- Samsung S24 Ultra -->
     <div class="product-card reveal">
       <div class="product-img">
-        <img src="image/samsung.jpg" style="width:100%;height:100%;object-fit:cover;">
+        <img src="image/samsung.jpg" alt="Samsung S24 Ultra">
         <span class="product-badge">Best Seller</span>
       </div>
       <div class="product-body">
-        <div class="product-title">Moroccan Custom</div>
+        <div class="product-name">Moroccan Custom</div>
         <div class="product-model">Samsung S24 Ultra</div>
-        <div class="product-features">
-          <span class="feat-tag">Personnalisé</span>
-          <span class="feat-tag">Zellige</span>
-          <span class="feat-tag">Premium</span>
-        </div>
+        <div class="product-tags"><span class="tag">Personnalisé</span><span class="tag">Zellige</span><span class="tag">Premium</span></div>
         <div class="product-footer">
-          <div class="product-price">149 <span>MAD</span></div>
-          <a href="#" class="btn-wa">Commander</a>
+          <div class="price">149 <span>MAD</span></div>
+          <a href="https://wa.me/212681049651?text=Bonjour%2C%20je%20veux%20commander%20la%20pochette%20Moroccan%20Custom%20pour%20Samsung%20S24%20Ultra." target="_blank" class="btn-wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.522 5.843L.057 23.428a.5.5 0 0 0 .615.606l5.765-1.511A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.18-1.433l-.371-.22-3.843 1.008 1.027-3.73-.241-.38A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>Commander</a>
         </div>
       </div>
     </div>
 
-    <!-- iPhone 15 Pro Max -->
     <div class="product-card reveal">
       <div class="product-img">
-        <img src="image/iphone.jpeg" style="width:100%;height:100%;object-fit:cover;">
-        <span class="product-badge">Nouveau</span>
+        <img src="image/iphone.jpeg" alt="iPhone 15 Pro Max">
+        <span class="product-badge new">Nouveau</span>
       </div>
       <div class="product-body">
-        <div class="product-title">Luxury Custom</div>
+        <div class="product-name">Luxury Custom</div>
         <div class="product-model">iPhone 15 Pro Max</div>
-        <div class="product-features">
-          <span class="feat-tag">Nom</span>
-          <span class="feat-tag">Design</span>
-          <span class="feat-tag">Unique</span>
-        </div>
+        <div class="product-tags"><span class="tag">Nom</span><span class="tag">Design</span><span class="tag">Unique</span></div>
         <div class="product-footer">
-          <div class="product-price">229 <span>MAD</span></div>
-          <a href="#" class="btn-wa">Commander</a>
+          <div class="price">229 <span>MAD</span></div>
+          <a href="https://wa.me/212681049651?text=Bonjour%2C%20je%20veux%20commander%20la%20pochette%20Luxury%20Custom%20pour%20iPhone%2015%20Pro%20Max." target="_blank" class="btn-wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.522 5.843L.057 23.428a.5.5 0 0 0 .615.606l5.765-1.511A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.18-1.433l-.371-.22-3.843 1.008 1.027-3.73-.241-.38A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>Commander</a>
         </div>
       </div>
     </div>
 
-    <!-- Redmi Note 13 -->
     <div class="product-card reveal">
       <div class="product-img">
-        <img src="image/samsung1.jpg" style="width:100%;height:100%;object-fit:cover;">
-        <span class="product-badge">Populaire</span>
+        <img src="image/samsung1.jpg" alt="Redmi Note 13">
+        <span class="product-badge pop">Populaire</span>
       </div>
       <div class="product-body">
-        <div class="product-title">Transparent Custom</div>
+        <div class="product-name">Transparent Custom</div>
         <div class="product-model">Redmi Note 13</div>
-        <div class="product-features">
-          <span class="feat-tag">Transparent</span>
-          <span class="feat-tag">Photo</span>
-          <span class="feat-tag">Anti-rayures</span>
-        </div>
+        <div class="product-tags"><span class="tag">Transparent</span><span class="tag">Photo</span><span class="tag">Anti-rayures</span></div>
         <div class="product-footer">
-          <div class="product-price">89 <span>MAD</span></div>
-          <a href="#" class="btn-wa">Commander</a>
+          <div class="price">89 <span>MAD</span></div>
+          <a href="https://wa.me/212681049651?text=Bonjour%2C%20je%20veux%20commander%20la%20pochette%20Transparent%20Custom%20pour%20Redmi%20Note%2013." target="_blank" class="btn-wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.522 5.843L.057 23.428a.5.5 0 0 0 .615.606l5.765-1.511A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.18-1.433l-.371-.22-3.843 1.008 1.027-3.73-.241-.38A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>Commander</a>
         </div>
       </div>
     </div>
 
-    <!-- Samsung A54 -->
     <div class="product-card reveal">
       <div class="product-img">
-        <img src="image/samsung2.webp" style="width:100%;height:100%;object-fit:cover;">
+        <img src="image/samsung2.webp" alt="Samsung A54">
       </div>
       <div class="product-body">
-        <div class="product-title">Armor Custom</div>
+        <div class="product-name">Armor Custom</div>
         <div class="product-model">Samsung A54</div>
-        <div class="product-features">
-          <span class="feat-tag">Antichoc</span>
-          <span class="feat-tag">Militaire</span>
-          <span class="feat-tag">Design</span>
-        </div>
+        <div class="product-tags"><span class="tag">Antichoc</span><span class="tag">Militaire</span><span class="tag">Design</span></div>
         <div class="product-footer">
-          <div class="product-price">119 <span>MAD</span></div>
-          <a href="#" class="btn-wa">Commander</a>
+          <div class="price">119 <span>MAD</span></div>
+          <a href="https://wa.me/212681049651?text=Bonjour%2C%20je%20veux%20commander%20la%20pochette%20Armor%20Custom%20pour%20Samsung%20A54." target="_blank" class="btn-wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.522 5.843L.057 23.428a.5.5 0 0 0 .615.606l5.765-1.511A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.18-1.433l-.371-.22-3.843 1.008 1.027-3.73-.241-.38A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>Commander</a>
         </div>
       </div>
     </div>
 
-    <!-- iPhone 14 -->
     <div class="product-card reveal">
       <div class="product-img">
-        <img src="image/iphone3.jpeg" style="width:100%;height:100%;object-fit:cover;">
+        <img src="image/iphone3.jpeg" alt="iPhone 14">
       </div>
       <div class="product-body">
-        <div class="product-title">Name Custom</div>
+        <div class="product-name">Name Custom</div>
         <div class="product-model">iPhone 14</div>
-        <div class="product-features">
-          <span class="feat-tag">Prénom</span>
-          <span class="feat-tag">Logo</span>
-          <span class="feat-tag">Premium</span>
-        </div>
+        <div class="product-tags"><span class="tag">Prénom</span><span class="tag">Logo</span><span class="tag">Premium</span></div>
         <div class="product-footer">
-          <div class="product-price">199 <span>MAD</span></div>
-          <a href="#" class="btn-wa">Commander</a>
+          <div class="price">199 <span>MAD</span></div>
+          <a href="https://wa.me/212681049651?text=Bonjour%2C%20je%20veux%20commander%20la%20pochette%20Name%20Custom%20pour%20iPhone%2014." target="_blank" class="btn-wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.522 5.843L.057 23.428a.5.5 0 0 0 .615.606l5.765-1.511A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.18-1.433l-.371-.22-3.843 1.008 1.027-3.73-.241-.38A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>Commander</a>
         </div>
       </div>
     </div>
 
-    <!-- Huawei -->
     <div class="product-card reveal">
       <div class="product-img">
-        <img src="image/honor.jpg" style="width:100%;height:100%;object-fit:cover;">
+        <img src="image/honor.jpg" alt="Huawei P60">
       </div>
       <div class="product-body">
-        <div class="product-title">Gold Custom</div>
+        <div class="product-name">Gold Custom</div>
         <div class="product-model">Huawei P60</div>
-        <div class="product-features">
-          <span class="feat-tag">Gold</span>
-          <span class="feat-tag">Luxury</span>
-          <span class="feat-tag">Exclusive</span>
-        </div>
+        <div class="product-tags"><span class="tag">Gold</span><span class="tag">Luxury</span><span class="tag">Exclusive</span></div>
         <div class="product-footer">
-          <div class="product-price">279 <span>MAD</span></div>
-          <a href="#" class="btn-wa">Commander</a>
+          <div class="price">279 <span>MAD</span></div>
+          <a href="https://wa.me/212681049651?text=Bonjour%2C%20je%20veux%20commander%20la%20pochette%20Gold%20Custom%20pour%20Huawei%20P60." target="_blank" class="btn-wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.522 5.843L.057 23.428a.5.5 0 0 0 .615.606l5.765-1.511A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.18-1.433l-.371-.22-3.843 1.008 1.027-3.73-.241-.38A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>Commander</a>
         </div>
       </div>
     </div>
 
   </div>
-
 </section>
 
 <!-- PERSONNALISATION -->
 <section id="personnalisation">
   <div class="section-header reveal">
-    <span class="section-eyebrow">Sur-mesure</span>
+    <span class="eyebrow">Sur-mesure</span>
     <h2 class="section-title">Créez votre <em>pochette idéale</em></h2>
     <p class="section-sub">Suivez les 4 étapes pour configurer la pochette parfaite pour votre téléphone.</p>
   </div>
 
   <div class="perso-wrapper">
-    <!-- Step Indicator -->
-    <div class="step-indicator">
-      <div class="step-item">
-        <div class="step-col">
-          <div class="step-circle active" id="sc1">1</div>
-          <div class="step-label active" id="sl1">Marque</div>
-        </div>
-        <div class="step-line" id="line1"></div>
+    <div class="step-bar">
+      <div class="step-col">
+        <div class="step-circle active" id="sc1">1</div>
+        <div class="step-label active" id="sl1">Marque</div>
       </div>
-      <div class="step-item">
-        <div class="step-col">
-          <div class="step-circle" id="sc2">2</div>
-          <div class="step-label" id="sl2">Modèle</div>
-        </div>
-        <div class="step-line" id="line2"></div>
+      <div class="step-connector" id="line1"></div>
+      <div class="step-col">
+        <div class="step-circle" id="sc2">2</div>
+        <div class="step-label" id="sl2">Modèle</div>
       </div>
-      <div class="step-item">
-        <div class="step-col">
-          <div class="step-circle" id="sc3">3</div>
-          <div class="step-label" id="sl3">Options</div>
-        </div>
-        <div class="step-line" id="line3"></div>
+      <div class="step-connector" id="line2"></div>
+      <div class="step-col">
+        <div class="step-circle" id="sc3">3</div>
+        <div class="step-label" id="sl3">Options</div>
       </div>
+      <div class="step-connector" id="line3"></div>
       <div class="step-col">
         <div class="step-circle" id="sc4">4</div>
         <div class="step-label" id="sl4">Commander</div>
       </div>
     </div>
 
-    <!-- Step 1: Brand -->
+    <!-- Step 1 -->
     <div class="perso-step active" id="step1">
       <h3 class="step-title">Choisissez votre marque</h3>
       <div class="brands-grid">
-        <button class="brand-btn" onclick="selectBrand('Samsung', this)">
-          <span class="brand-icon">📱</span>Samsung
-        </button>
-        <button class="brand-btn" onclick="selectBrand('Apple', this)">
-          <span class="brand-icon">🍎</span>iPhone
-        </button>
-        <button class="brand-btn" onclick="selectBrand('Xiaomi', this)">
-          <span class="brand-icon">🔴</span>Xiaomi
-        </button>
-        <button class="brand-btn" onclick="selectBrand('Huawei', this)">
-          <span class="brand-icon">🌐</span>Huawei
-        </button>
-        <button class="brand-btn" onclick="selectBrand('Oppo', this)">
-          <span class="brand-icon">💚</span>Oppo
-        </button>
-        <button class="brand-btn" onclick="selectBrand('Realme', this)">
-          <span class="brand-icon">⚡</span>Realme
-        </button>
+        <button class="brand-btn" onclick="selectBrand('Samsung',this)"><span class="brand-icon">📱</span>Samsung</button>
+        <button class="brand-btn" onclick="selectBrand('Apple',this)"><span class="brand-icon">🍎</span>iPhone</button>
+        <button class="brand-btn" onclick="selectBrand('Xiaomi',this)"><span class="brand-icon">🔴</span>Xiaomi</button>
+        <button class="brand-btn" onclick="selectBrand('Huawei',this)"><span class="brand-icon">🌐</span>Huawei</button>
+        <button class="brand-btn" onclick="selectBrand('Oppo',this)"><span class="brand-icon">💚</span>Oppo</button>
+        <button class="brand-btn" onclick="selectBrand('Realme',this)"><span class="brand-icon">⚡</span>Realme</button>
       </div>
       <div class="step-nav">
         <button class="btn-next" id="nextBtn1" onclick="goToStep(2)" disabled>Suivant →</button>
       </div>
     </div>
 
-    <!-- Step 2: Model -->
+    <!-- Step 2 -->
     <div class="perso-step" id="step2">
       <h3 class="step-title">Choisissez votre modèle</h3>
       <div class="models-grid" id="modelsGrid"></div>
@@ -884,43 +954,43 @@
       </div>
     </div>
 
-    <!-- Step 3: Options -->
+    <!-- Step 3 -->
     <div class="perso-step" id="step3">
       <h3 class="step-title">Personnalisez votre pochette</h3>
       <div class="options-grid">
         <div class="option-group">
           <span class="option-label">Couleur</span>
           <div class="color-swatches">
-            <div class="swatch" style="background:#0a0a0a;border:1px solid #444" title="Noire" onclick="selectColor('Noire',this)"></div>
-            <div class="swatch" style="background:#fff;border:1px solid #555" title="Blanche" onclick="selectColor('Blanche',this)"></div>
-            <div class="swatch" style="background:#c9a96e" title="Or" onclick="selectColor('Or',this)"></div>
+            <div class="swatch" style="background:#1a1208" title="Noire" onclick="selectColor('Noire',this)"></div>
+            <div class="swatch" style="background:#fff;border:2px solid #ddd" title="Blanche" onclick="selectColor('Blanche',this)"></div>
+            <div class="swatch" style="background:#b8936a" title="Or" onclick="selectColor('Or',this)"></div>
             <div class="swatch" style="background:#ef4444" title="Rouge" onclick="selectColor('Rouge',this)"></div>
             <div class="swatch" style="background:#3b82f6" title="Bleue" onclick="selectColor('Bleue',this)"></div>
             <div class="swatch" style="background:#10b981" title="Verte" onclick="selectColor('Verte',this)"></div>
             <div class="swatch" style="background:#8b5cf6" title="Violette" onclick="selectColor('Violette',this)"></div>
-            <div class="swatch" style="background:linear-gradient(135deg,#c9a96e,#fff,#c9a96e);border:1px solid #c9a96e" title="Transparente" onclick="selectColor('Transparente',this)"></div>
+            <div class="swatch" style="background:linear-gradient(135deg,#d4aa82,#f5ede3,#d4aa82)" title="Crème" onclick="selectColor('Crème',this)"></div>
           </div>
         </div>
         <div class="option-group">
           <span class="option-label">Matière</span>
-          <div class="material-list">
-            <button class="mat-btn" onclick="selectMat('Silicone',this)">🛡️ Silicone</button>
-            <button class="mat-btn" onclick="selectMat('Cuir véritable',this)">👜 Cuir véritable</button>
-            <button class="mat-btn" onclick="selectMat('Cuir vegan',this)">🌿 Cuir vegan</button>
-            <button class="mat-btn" onclick="selectMat('Transparent',this)">🔍 Transparent</button>
-            <button class="mat-btn" onclick="selectMat('Rigide',this)">💪 Rigide (PC)</button>
-            <button class="mat-btn" onclick="selectMat('Tissu',this)">🧵 Tissu</button>
+          <div class="option-list">
+            <button class="option-btn" onclick="selectMat('Silicone',this)">🛡️ Silicone</button>
+            <button class="option-btn" onclick="selectMat('Cuir véritable',this)">👜 Cuir véritable</button>
+            <button class="option-btn" onclick="selectMat('Cuir vegan',this)">🌿 Cuir vegan</button>
+            <button class="option-btn" onclick="selectMat('Transparent',this)">🔍 Transparent</button>
+            <button class="option-btn" onclick="selectMat('Rigide',this)">💪 Rigide (PC)</button>
+            <button class="option-btn" onclick="selectMat('Tissu',this)">🧵 Tissu</button>
           </div>
         </div>
         <div class="option-group">
           <span class="option-label">Design</span>
-          <div class="design-list">
-            <button class="design-btn" onclick="selectDesign('Simple & Élégant',this)">✦ Simple & Élégant</button>
-            <button class="design-btn" onclick="selectDesign('Luxe Premium',this)">💎 Luxe Premium</button>
-            <button class="design-btn" onclick="selectDesign('Prénom personnalisé',this)">✍️ Prénom personnalisé</button>
-            <button class="design-btn" onclick="selectDesign('Photo / Image',this)">🖼️ Photo / Image</button>
-            <button class="design-btn" onclick="selectDesign('Logo entreprise',this)">🏷️ Logo entreprise</button>
-            <button class="design-btn" onclick="selectDesign('Motif artistique',this)">🎨 Motif artistique</button>
+          <div class="option-list">
+            <button class="option-btn" onclick="selectDesign('Simple & Élégant',this)">✦ Simple & Élégant</button>
+            <button class="option-btn" onclick="selectDesign('Luxe Premium',this)">💎 Luxe Premium</button>
+            <button class="option-btn" onclick="selectDesign('Prénom personnalisé',this)">✍️ Prénom personnalisé</button>
+            <button class="option-btn" onclick="selectDesign('Photo / Image',this)">🖼️ Photo / Image</button>
+            <button class="option-btn" onclick="selectDesign('Logo entreprise',this)">🏷️ Logo entreprise</button>
+            <button class="option-btn" onclick="selectDesign('Motif artistique',this)">🎨 Motif artistique</button>
           </div>
         </div>
       </div>
@@ -930,15 +1000,15 @@
       </div>
     </div>
 
-    <!-- Step 4: Order -->
+    <!-- Step 4 -->
     <div class="perso-step" id="step4">
       <h3 class="step-title">Votre commande</h3>
-      <div class="order-preview">
+      <div class="summary-box">
         <h3>✦ Récapitulatif</h3>
-        <div class="preview-details" id="previewDetails"></div>
+        <div id="previewDetails"></div>
       </div>
       <div class="step-nav" style="flex-direction:column;align-items:center;gap:1rem;">
-        <a href="#" id="finalOrderBtn" class="btn-wa" style="padding:16px 36px;font-size:0.9rem;border-radius:8px;">
+        <a href="#" id="finalOrderBtn" class="btn-wa" style="padding:16px 36px;font-size:0.9rem;border-radius:50px;">
           <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.522 5.843L.057 23.428a.5.5 0 0 0 .615.606l5.765-1.511A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.18-1.433l-.371-.22-3.843 1.008 1.027-3.73-.241-.38A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
           Commander sur WhatsApp
         </a>
@@ -952,34 +1022,22 @@
 <section id="a-propos">
   <div class="about-inner">
     <div class="about-visual reveal">
-      <div class="about-tile">
-        <span class="about-tile-icon">🎨</span>
-        <div class="about-tile-label">Design sur-mesure</div>
-      </div>
-      <div class="about-tile">
-        <span class="about-tile-icon">✨</span>
-        <div class="about-tile-label">Qualité premium</div>
-      </div>
-      <div class="about-tile">
-        <span class="about-tile-icon">🚀</span>
-        <div class="about-tile-label">Livraison express</div>
-      </div>
-      <div class="about-tile">
-        <span class="about-tile-icon">💬</span>
-        <div class="about-tile-label">Service client 7j/7</div>
-      </div>
+      <div class="about-tile"><span class="tile-icon">🎨</span><div class="tile-label">Design sur-mesure</div></div>
+      <div class="about-tile"><span class="tile-icon">✨</span><div class="tile-label">Qualité premium</div></div>
+      <div class="about-tile"><span class="tile-icon">🚀</span><div class="tile-label">Livraison express</div></div>
+      <div class="about-tile"><span class="tile-icon">💬</span><div class="tile-label">Service 7j/7</div></div>
     </div>
     <div class="about-content reveal">
-      <span class="section-eyebrow">Notre histoire</span>
-      <h2 class="section-title" style="text-align:left;margin-bottom:1.5rem;">À propos de<br><em>Pauchette Sarir</em></h2>
-      <p>Pauchette Sarir est née d'une passion pour le design et la technologie. Notre mission : offrir des pochettes de téléphone uniques qui reflètent votre personnalité.</p>
-      <p>Chaque création est conçue avec soin, en utilisant des matériaux de qualité sélectionnés pour leur durabilité et leur esthétique. Nous proposons une expérience de personnalisation unique au Maroc.</p>
-      <div class="about-values">
-        <div class="value-item"><span class="value-dot"></span>Matériaux certifiés et durables</div>
-        <div class="value-item"><span class="value-dot"></span>Compatibilité garantie pour chaque modèle</div>
-        <div class="value-item"><span class="value-dot"></span>Personnalisation illimitée selon vos envies</div>
-        <div class="value-item"><span class="value-dot"></span>Livraison partout au Maroc en 24–48h</div>
-        <div class="value-item"><span class="value-dot"></span>Satisfaction client garantie ou remboursé</div>
+      <span class="eyebrow" style="justify-content:flex-start;">Notre histoire</span>
+      <h2 class="section-title" style="text-align:left;margin-bottom:1.5rem;">À propos de<br><em>Phone Skin</em></h2>
+      <p>Phone Skin est née d'une passion pour le design et la technologie. Notre mission : offrir des pochettes de téléphone uniques qui reflètent votre personnalité.</p>
+      <p>Chaque création est conçue avec soin, en utilisant des matériaux de qualité sélectionnés pour leur durabilité et leur esthétique.</p>
+      <div class="value-list">
+        <div class="value-item"><div class="value-check">✓</div>Matériaux certifiés et durables</div>
+        <div class="value-item"><div class="value-check">✓</div>Compatibilité garantie pour chaque modèle</div>
+        <div class="value-item"><div class="value-check">✓</div>Personnalisation illimitée selon vos envies</div>
+        <div class="value-item"><div class="value-check">✓</div>Livraison partout au Maroc en 24–48h</div>
+        <div class="value-item"><div class="value-check">✓</div>Satisfaction client garantie ou remboursé</div>
       </div>
     </div>
   </div>
@@ -988,7 +1046,7 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-header reveal">
-    <span class="section-eyebrow">Nous contacter</span>
+    <span class="eyebrow">Nous contacter</span>
     <h2 class="section-title">Parlons de votre <em>projet</em></h2>
     <p class="section-sub">Une question ? Un devis ? Notre équipe vous répond dans les plus brefs délais.</p>
   </div>
@@ -997,35 +1055,23 @@
       <div class="contact-info">
         <h3>Informations de contact</h3>
         <div class="contact-item">
-          <div class="contact-icon">📍</div>
-          <div class="contact-text">
-            <strong>Adresse</strong>
-            <span>Rabat, Maroc</span>
-          </div>
+          <div class="c-icon">📍</div>
+          <div class="c-text"><strong>Adresse</strong><span>Rabat, Maroc</span></div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">📞</div>
-          <div class="contact-text">
-            <strong>Téléphone / WhatsApp</strong>
-            <span>+212 681 049 651</span>
-          </div>
+          <div class="c-icon">📞</div>
+          <div class="c-text"><strong>Téléphone / WhatsApp</strong><span>+212 681 049 651</span></div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">✉️</div>
-          <div class="contact-text">
-            <strong>Email</strong>
-            <span>contact@pauchettesarir.ma</span>
-          </div>
+          <div class="c-icon">✉️</div>
+          <div class="c-text"><strong>Email</strong><span>contact@pauchettesarir.ma</span></div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">🕐</div>
-          <div class="contact-text">
-            <strong>Horaires</strong>
-            <span>Lun–Sam : 9h00 – 20h00</span>
-          </div>
+          <div class="c-icon">🕐</div>
+          <div class="c-text"><strong>Horaires</strong><span>Lun–Sam : 9h00 – 20h00</span></div>
         </div>
         <div style="margin-top:1.5rem;">
-          <a href="https://wa.me/212681049651" target="_blank" class="btn-wa" style="display:inline-flex;padding:12px 24px;font-size:0.85rem;border-radius:8px;">
+          <a href="https://wa.me/212681049651" target="_blank" class="btn-wa" style="display:inline-flex;padding:12px 24px;font-size:0.85rem;border-radius:50px;">
             <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.522 5.843L.057 23.428a.5.5 0 0 0 .615.606l5.765-1.511A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.18-1.433l-.371-.22-3.843 1.008 1.027-3.73-.241-.38A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
             Écrire sur WhatsApp
           </a>
@@ -1034,30 +1080,27 @@
       <div class="contact-form">
         <div class="form-group">
           <label>Nom complet</label>
-          <input type="text" placeholder="Votre nom">
+          <input type="text" id="cName" placeholder="Votre nom">
         </div>
         <div class="form-group">
           <label>Téléphone</label>
-          <input type="tel" placeholder="+212 6XX XXX XXX">
+          <input type="tel" id="cPhone" placeholder="+212 6XX XXX XXX">
         </div>
         <div class="form-group">
           <label>Marque du téléphone</label>
-          <select>
+          <select id="cBrand">
             <option value="">Sélectionner...</option>
-            <option>Samsung</option>
-            <option>iPhone (Apple)</option>
-            <option>Xiaomi</option>
-            <option>Huawei</option>
-            <option>Oppo</option>
-            <option>Realme</option>
+            <option>Samsung</option><option>iPhone (Apple)</option>
+            <option>Xiaomi</option><option>Huawei</option>
+            <option>Oppo</option><option>Realme</option>
           </select>
         </div>
         <div class="form-group">
           <label>Message</label>
-          <textarea placeholder="Décrivez votre commande ou votre question..."></textarea>
+          <textarea id="cMsg" placeholder="Décrivez votre commande ou votre question..."></textarea>
         </div>
-        <button class="btn-primary" style="width:100%;justify-content:center;" onclick="sendContactWA()">
-          Envoyer via WhatsApp ✦
+        <button class="btn-primary" style="width:100%;justify-content:center;border-radius:50px;padding:15px;" onclick="sendContactWA()">
+          <span>Envoyer via WhatsApp</span><span>✦</span>
         </button>
       </div>
     </div>
@@ -1067,8 +1110,8 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
-    <div class="footer-brand">
-      <span class="footer-logo">Pauchette Sarir</span>
+    <div>
+      <span class="footer-logo">Phone Skin</span>
       <p class="footer-desc">Spécialiste marocain de la pochette de téléphone personnalisée. Qualité premium, designs exclusifs, livraison rapide partout au Maroc.</p>
       <div class="social-links">
         <a href="#" class="social-btn" title="Instagram">📸</a>
@@ -1099,7 +1142,7 @@
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
-      <div class="footer-contact-list">
+      <div>
         <div class="fc-item"><span class="fc-icon">📍</span> Rabat, Maroc</div>
         <div class="fc-item"><span class="fc-icon">📞</span> +212 681 049 651</div>
         <div class="fc-item"><span class="fc-icon">✉️</span> contact@pauchettesarir.ma</div>
@@ -1108,25 +1151,24 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© 2025 <span>Pauchette Sarir</span>. Tous droits réservés. Fait avec ❤️ au Maroc.</p>
+    <p class="footer-copy">© 2025 <em>Phone Skin</em>. Tous droits réservés. Fait avec ❤️ au Maroc.</p>
     <div class="footer-legal">
-      <a href="#">Politique de confidentialité</a>
-      <a href="#">Conditions d'utilisation</a>
+      <a href="#">Confidentialité</a>
+      <a href="#">Conditions</a>
       <a href="#">Livraison & retours</a>
     </div>
   </div>
 </footer>
 
-<!-- WhatsApp Float -->
-<a href="https://wa.me/212681049651?text=Bonjour%2C%20je%20souhaite%20commander%20une%20pochette%20personnalis%C3%A9e." target="_blank" class="wa-float" title="Commander sur WhatsApp">
+<!-- WA Float -->
+<a href="https://wa.me/212681049651?text=Bonjour%2C%20je%20souhaite%20commander%20une%20pochette%20personnalis%C3%A9e." target="_blank" class="wa-float">
   <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.522 5.843L.057 23.428a.5.5 0 0 0 .615.606l5.765-1.511A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.18-1.433l-.371-.22-3.843 1.008 1.027-3.73-.241-.38A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
 </a>
 
 <script>
-// ── NAV ──
-const navbar = document.getElementById('navbar');
+// NAV
 window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 60);
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
 });
 
 const burger = document.getElementById('burger');
@@ -1140,13 +1182,13 @@ function closeMobile() {
   mobileMenu.classList.remove('open');
 }
 
-// ── REVEAL ──
+// REVEAL
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// ── PERSONALISATION ──
+// PERSONALISATION
 const state = { brand: null, model: null, color: null, material: null, design: null };
 
 const brandModels = {
@@ -1161,39 +1203,37 @@ const brandModels = {
 function selectBrand(brand, el) {
   document.querySelectorAll('.brand-btn').forEach(b => b.classList.remove('selected'));
   el.classList.add('selected');
-  state.brand = brand;
-  state.model = null;
+  state.brand = brand; state.model = null;
   document.getElementById('nextBtn1').disabled = false;
 }
 
 function goToStep(step) {
   for (let i = 1; i <= 4; i++) {
     document.getElementById('step'+i).classList.toggle('active', i === step);
-    document.getElementById('sc'+i).classList.remove('active','done');
-    if (document.getElementById('sl'+i)) document.getElementById('sl'+i).classList.remove('active');
+    const sc = document.getElementById('sc'+i);
+    const sl = document.getElementById('sl'+i);
+    sc.classList.remove('active','done');
+    if (sl) { sl.classList.remove('active','done'); }
     if (i < step) {
-      document.getElementById('sc'+i).classList.add('done');
-      document.getElementById('sc'+i).textContent = '✓';
+      sc.classList.add('done'); sc.textContent = '✓';
       if (document.getElementById('line'+i)) document.getElementById('line'+i).classList.add('done');
     } else {
-      document.getElementById('sc'+i).textContent = i;
+      sc.textContent = i;
       if (document.getElementById('line'+i)) document.getElementById('line'+i).classList.remove('done');
     }
   }
   document.getElementById('sc'+step).classList.add('active');
-  if (document.getElementById('sl'+step)) document.getElementById('sl'+step).classList.add('active');
-
+  const sl = document.getElementById('sl'+step);
+  if (sl) { sl.classList.add('active'); }
   if (step === 2) loadModels();
   if (step === 4) buildPreview();
-
   document.getElementById('personnalisation').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function loadModels() {
   const grid = document.getElementById('modelsGrid');
   grid.innerHTML = '';
-  const models = brandModels[state.brand] || [];
-  models.forEach(m => {
+  (brandModels[state.brand] || []).forEach(m => {
     const btn = document.createElement('button');
     btn.className = 'model-btn' + (state.model === m ? ' selected' : '');
     btn.innerHTML = `<div class="model-name">${m}</div><div class="model-sub">${state.brand} · Compatible</div>`;
@@ -1210,53 +1250,54 @@ function loadModels() {
 
 function selectColor(color, el) {
   document.querySelectorAll('.swatch').forEach(s => s.classList.remove('selected'));
-  el.classList.add('selected');
-  state.color = color;
-  checkStep3();
+  el.classList.add('selected'); state.color = color; checkStep3();
 }
 function selectMat(mat, el) {
-  document.querySelectorAll('.mat-btn').forEach(b => b.classList.remove('selected'));
-  el.classList.add('selected');
-  state.material = mat;
-  checkStep3();
+  document.querySelectorAll('.option-btn').forEach(b => {
+    if (b.parentElement.previousElementSibling && b.parentElement.previousElementSibling.textContent === 'Matière') b.classList.remove('selected');
+  });
+  el.classList.add('selected'); state.material = mat; checkStep3();
 }
 function selectDesign(design, el) {
-  document.querySelectorAll('.design-btn').forEach(b => b.classList.remove('selected'));
-  el.classList.add('selected');
-  state.design = design;
-  checkStep3();
+  document.querySelectorAll('.option-btn').forEach(b => {
+    if (b.parentElement.previousElementSibling && b.parentElement.previousElementSibling.textContent === 'Design') b.classList.remove('selected');
+  });
+  el.classList.add('selected'); state.design = design; checkStep3();
+}
+
+// Cleaner selection approach
+function selectMat(mat, el) {
+  el.closest('.option-list').querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected'); state.material = mat; checkStep3();
+}
+function selectDesign(design, el) {
+  el.closest('.option-list').querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected'); state.design = design; checkStep3();
 }
 function checkStep3() {
   document.getElementById('nextBtn3').disabled = !(state.color && state.material && state.design);
 }
 
 function buildPreview() {
-  const details = [
+  const rows = [
     { key: 'Marque', val: state.brand },
     { key: 'Modèle', val: state.model },
     { key: 'Couleur', val: state.color },
     { key: 'Matière', val: state.material },
     { key: 'Design', val: state.design },
   ];
-  document.getElementById('previewDetails').innerHTML = details.map(d =>
-    `<div class="preview-row"><span class="preview-key">${d.key}</span><span class="preview-val">${d.val || '–'}</span></div>`
+  document.getElementById('previewDetails').innerHTML = rows.map(d =>
+    `<div class="summary-row"><span class="summary-key">${d.key}</span><span class="summary-val">${d.val || '–'}</span></div>`
   ).join('');
-
-  const msg = `Bonjour, je souhaite commander une pochette personnalisée pour ${state.brand} ${state.model}, couleur ${state.color}, matière ${state.material}, design ${state.design}.`;
+  const msg = `Bonjour, je souhaite commander une pochette personnalisée :\n• Marque : ${state.brand}\n• Modèle : ${state.model}\n• Couleur : ${state.color}\n• Matière : ${state.material}\n• Design : ${state.design}`;
   document.getElementById('finalOrderBtn').href = `https://wa.me/212681049651?text=${encodeURIComponent(msg)}`;
 }
 
-// Quick order from product cards
-function orderProduct(brand, model, color, material, design) {
-  const msg = `Bonjour, je souhaite commander une pochette personnalisée pour ${brand} ${model}, couleur ${color}, matière ${material}, design ${design}.`;
-  window.open(`https://wa.me/212681049651?text=${encodeURIComponent(msg)}`, '_blank');
-}
-
 function sendContactWA() {
-  const name = document.querySelector('#contact input[type=text]').value || 'Client';
-  const phone = document.querySelector('#contact input[type=tel]').value || '';
-  const msg = document.querySelector('#contact textarea').value || 'Bonjour, je suis intéressé par vos produits.';
-  const text = `Bonjour, je m'appelle ${name}${phone ? ' ('+phone+')' : ''}. ${msg}`;
+  const name = document.getElementById('cName').value || 'Client';
+  const phone = document.getElementById('cPhone').value || '';
+  const msg = document.getElementById('cMsg').value || 'Bonjour, je suis intéressé par vos produits.';
+  const text = `Bonjour, je m'appelle ${name}${phone ? ' ('+phone+')' : ''}.\n${msg}`;
   window.open(`https://wa.me/212681049651?text=${encodeURIComponent(text)}`, '_blank');
 }
 </script>
